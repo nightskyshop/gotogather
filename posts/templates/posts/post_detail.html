@@ -20,13 +20,13 @@
 {% block content %}
   <div class="content">
     {% if post.image1 %}
-      <img src="{{post.image1.url}}">
+      <img class="image" src="{{post.image1.url}}">
     {% endif %}
     {% if post.image2 %}
-      <img src="{{post.image2.url}}">
+      <img class="image" src="{{post.image2.url}}">
     {% endif %}
     {% if post.image3 %}
-      <img src="{{post.image3.url}}">
+      <img class="image" src="{{post.image3.url}}">
     {% endif %}
     <p class="text">{{post.content|linebreaksbr}}</p>
   </div>
