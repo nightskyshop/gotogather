@@ -1,0 +1,23 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>고투게더 | {{post.title}}</title>
+{% endblock title %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'posts/css/post_confirm_delete.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="confirm">
+  <p class="author-btn">{{post.author}}</p>
+  <p class="title">[{{post.title}}]</p>
+  <p>삭제하시겠습니까?</p>
+  <form method="POST">{% csrf_token %}
+      <div class="confirm_btn">
+        <a href="{% url 'post-detail' class.id lesson.id post.id %}">돌아가기</a>
+        <button type="submit">삭제</button>
+      </div>
+  </form>
+</div>
+{% endblock content %}

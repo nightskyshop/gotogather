@@ -1,0 +1,60 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>고투게더 | {{class.title}}</title>
+{% endblock title %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'posts/css/post_list.css' %}">
+{% endblock css %}
+
+{% block logo_text %}
+  <div id="header">
+    <div class="container">
+      <h1 class="classtitle">{{class.title}}</h1>
+    </div>
+  </div>
+{% endblock logo_text %}
+
+{% block content %}
+  <div class="btn_post btn_make">
+    {% if user.is_authenticated %}
+      {% if user.is_superuser %}
+        <a href="{% url 'lesson-create' class.id %}">레슨 만들기</a>
+      {% else %}
+        <a href="{% url 'commentary'%}">이용안내</a>
+      {% endif %}
+    {% else %}
+      <a href="{% url 'commentary'%}">이용안내</a>
+    {% endif %}
+  </div>
+  {% if page_obj.object_list %}
+      <div class="post_container"> 
+      {% for lesson in lessons %}
+        <div class="post"><a href="{% url 'post-list' class.id lesson.id %}">         
+          <h2 class="title">{{lesson.title}}</h2>
+        </a></div>
+      {% endfor %}
+    </div>
+    <div class="paginator">
+        {% if page_obj.has_previous %}
+          <a href="?page=1" class="first">first</a>
+          <a href="?page={{page_obj.previous_page_number}}" class="prev">prev</a>
+        {% endif %}
+    
+        <span class="page">
+          <p>{{page_obj.number}} of {{page_obj.paginator.num_pages}}</p>
+        </span>
+
+        {% if page_obj.has_next %}
+          <a href="?page={{page_obj.next_page_number}}" class="next">next</a>
+          <a href="?page={{page_obj.paginator.num_pages}}" class="last">last</a>
+        {% endif %}
+    </div>
+  {% else %}
+    <div class="blank">
+      <p>보여줄 수업이 없어요.<br>첫 수업을 시작해보면 어떨까요?</p>
+    </div>
+  {% endif %}
+{% endblock content %}

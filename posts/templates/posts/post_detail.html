@@ -1,0 +1,63 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>고투게더 | {{post.title}}</title>
+{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'posts/css/post_detail.css' %}">
+{% endblock css %}
+
+
+{% block post_header %}
+    <div class="container">
+        <h1 class="title">{{post.title}}</h1>
+        <p class="date">{{post.author}}</p>
+    </div>
+{% endblock post_header %}
+
+
+{% block content %}
+  <div class="content">
+    {% if post.image1 %}
+      <img src="{{post.image1.url}}">
+    {% endif %}
+    {% if post.image2 %}
+      <img src="{{post.image2.url}}">
+    {% endif %}
+    {% if post.image3 %}
+      <img src="{{post.image3.url}}">
+    {% endif %}
+    <p class="text">{{post.content|linebreaksbr}}</p>
+  </div>
+  {% if user.is_authenticated %}
+    {% for comment in comments %}
+      <p class="comment">{{comment.comment}} <b>
+        {% if user == comment.author %}
+          <a href="{% url 'comment-delete' class.id lesson.id post.id comment.id %}">삭제</a>
+        {% elif user.is_superuser %}
+          <a href="{% url 'comment-delete' class.id lesson.id post.id comment.id %}">삭제</a>
+        {% endif %}
+        {{comment.author}}</b> </p>
+    {% endfor %}
+
+    <form method="post" autocomplete="off">{% csrf_token %}
+      <p class="form">{{form.comment}}</p>
+      <input type="submit" value="작성완료">
+    </form>
+  {% endif %}
+  <div class="btn">
+    <div class="btn_list"><a href="{% url 'post-list' class.id lesson.id %}">목록으로</a></div>
+    {% if post.author == user %}
+      <div class="right-btn">
+        <div class="btn_modify"><a href="{% url 'post-update' class.id lesson.id post.id %}">수정하기</a></div>
+        <div class="btn_delete"><a href="{% url 'post-delete' class.id lesson.id post.id %}">삭제하기</a></div>
+      </div>
+    {% elif user.is_superuser %}
+      <div class="right-btn">
+        <div class="btn_modify"><a href="{% url 'post-update' class.id lesson.id post.id %}">수정하기</a></div>
+        <div class="btn_delete"><a href="{% url 'post-delete' class.id lesson.id post.id %}">삭제하기</a></div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock content %}

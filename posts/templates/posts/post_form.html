@@ -1,0 +1,76 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>고투게더 | 
+    {% if post %}
+      {{post.title}}
+    {% else %}
+      글쓰기
+    {% endif %}
+  </title>
+{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'posts/css/post_form.css' %}">
+{% endblock css %}
+
+{% block post_header %}
+    <div class="container"></div>
+    <h1 class="header">
+      {% if post %}
+        {{post.title}} 수정
+      {% else %}
+        글쓰기
+      {% endif %}
+    </h1>
+{% endblock post_header %}
+
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        <div class="submit">
+          {% if post %}
+            <input type="submit" value="수정완료">
+          {% else %}
+            <input type="submit" value="작성완료">
+          {% endif %}
+        </div>
+        <div class="editor">
+            <p class="nonpadding">{{form.title}}</p>
+            {% for error in form.title.errors %}
+                <p class="error">{{error}}</p>
+            {% endfor %}
+            <p>{{form.content}}</p>
+            {% for error in form.content.errors %}
+                <p class="error">{{error}}</p>
+            {% endfor %}
+            <hr id="hr">
+            <p class="imagefield">
+              {{form.image1}}
+              {% for error in form.image1.errors %}
+                <p class="error">{{error}}</p>
+              {% endfor %}
+            </p>
+            <p class="imagefield">
+              {{form.image2}}
+              {% for error in form.image1.errors %}
+                <p class="error">{{error}}</p>
+              {% endfor %}
+            </p>
+            <p class="lastimagefield">
+              {{form.image3}}
+              {% for error in form.image1.errors %}
+                <p class="error">{{error}}</p>
+              {% endfor %}
+            </p>
+        </div>
+    </form>
+    <div class="btn_back">
+      {% if post %}
+        <a href="{% url 'post-detail' class.id lesson.id post.id %}">돌아가기</a>
+      {% else %}
+        <a href="{% url 'post-list' class.id lesson.id %}">돌아가기</a>
+      {% endif %}
+    </div>
+{% endblock content %}
+

@@ -1,0 +1,57 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>고투게더</title>
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'posts/css/commentary.css' %}">
+{% endblock css %}
+
+{% block logo_text %}
+  <div id="header" >
+    <div class="container">
+      <h1 class="alinecenter">이용안내</h1>
+    </div>
+  </div>
+{% endblock logo_text %}
+
+{% block content %}
+  <div class="btn_post btn_make">
+    <a href="{% url 'index'%}">홈으로 이동</a>
+  </div>
+  <h1 class="commentary">1. 회원가입</h1>
+  <p class="commentaryp">
+    이름: 글을 쓸 때 나오게 되는 이름(본명 예:김하주)</br>
+    이메일: 비밀번호 초기화 이메일을 보내는 이메일</br>
+    비밀번호: 로그인할 때의 비밀번호</br>
+  </p>
+  <h1 class="commentary">2. 로그인</h1>
+  <p class="commentaryp">
+    이름: 회원가입 할 때 만든 이름.</br>
+    비밀번호: 회원가입 할 때 만든 이름.</br>
+  </p>
+  <h1 class="commentary">3. 글 적는 방법</h1>
+  <p class="commentaryp">
+    1. 내가 속한 팀 안으로 들어갑니다.</br>
+    2. 수업 중인 책 이름으로 들어갑니다.</br>
+    3. 글쓰기에 들어갑니다.</br>
+    4. 제목과 내용을 적습니다(내용은 10자 이상이어야 합니다).</br>
+    5. 책이 한권보다 많다면 숫자를 적으면 됩니다.(예: 레미제라블5)</br>
+    6. 이름은 자동으로 로그인 되어있는 유저의 이름이 사용됩니다.</br>
+  </p>
+  <h1 class="commentary">4. 수정, 삭제</h1>
+  <p class="commentaryp">
+    수정, 삭제는 작성자 또는 선생님만 가능합니다.</br>
+  </p>
+  <h1 class="commentary">!!주의사항!!</h1>
+  <p class="commentaryp">
+    이 웹사이트는 데스크톱 용입니다.</br>
+    글 작성을 하려면 로그인되어 있어야합니다.</br>
+    글 작성에는 저장기능이 없습니다.</br>
+    글은 컴퓨터 또는 구글 드라이브에 따로 저장하는 것을 추천드립니다.</br>
+    접근할 수 없는 창에 들어가려고 시도하면 404 혹은 403 에러가 날 수 있습니다.</br>
+  </p>
+  <p class="lastcommentary">오류신고, 탈퇴 문의는 nightskyshop1023@naver.com | 010-9671-2866</p>
+{% endblock content %}

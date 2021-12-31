@@ -1,0 +1,33 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>고투게더 | 클레스 만들기</title>
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'posts/css/post_form.css' %}">
+{% endblock css %}
+
+{% block post_header %}
+    <div class="container"></div>
+    <h1 class="header">클레스 만들기</h1>
+{% endblock post_header %}
+
+
+{% block content %}
+    <form method="post">{% csrf_token %}
+        <div class="submit">
+            <input type="submit" value="작성완료">
+        </div>
+        <div class="editor">
+            <p class="titleform">{{form.title}}</p>
+            {% for error in form.title.errors %}
+                <p class="error">{{error}}</p>
+            {% endfor %}
+        </div>
+    </form>
+    <div class="btn_back">
+        <a href="{% url 'index' %}">돌아가기</a>
+    </div>
+{% endblock content %}

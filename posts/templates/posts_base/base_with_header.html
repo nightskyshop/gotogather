@@ -1,0 +1,11 @@
+{% extends "posts_base/base.html" %}
+
+{% load static %}
+
+{% block header %}
+<header class="site-header only-logo max-content-width">
+  <a href="{% url 'index' %}">
+    <img class="logo" src="{% static 'posts/images/logo.png' %}" alt="코투게더 로고">
+  </a>
+</header>
+{% endblock header %}

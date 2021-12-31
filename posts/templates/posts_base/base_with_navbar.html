@@ -1,0 +1,42 @@
+{% extends "posts_base/base.html" %}
+
+{% load static %}
+
+<body>
+  <div id="warp">
+       <div id="header">
+           <div id="nav">
+               <div class="logo">
+                   <a href="{% url 'index' %}"><img src="{% static 'posts/images/logo.png' %}" class="headerlogo"></a>
+                   {% if user.is_authenticated %}
+                       <div class="btn_post">
+                           <a href="{% url 'account_change_password'%}">비밀번호 변경</a>
+                           <a href="{% url 'account_logout'%}">로그아웃</a>
+                       </div>
+                   {% else %}
+                       <div class="btn_post">
+                           <a href="{% url 'account_login'%}">로그인</a>
+                           <a href="{% url 'account_signup'%}">회원가입</a>
+                       </div>
+                   {% endif %}
+               </div>
+           </div>
+           {% block post_header %}
+           {% endblock post_header %}
+       </div>
+       {% block logo_text %}
+       {% endblock logo_text %}
+       <div id="content">
+           <div class="container">
+               {% block content %}
+               {% endblock content %}
+           </div>
+       </div>
+       <div id="footer">
+           <div class="footer">
+               <p>Gotogather</p>
+           </div>
+       </div>
+   </div>
+</body>
+</html>
