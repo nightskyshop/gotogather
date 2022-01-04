@@ -32,9 +32,6 @@ img {
 #nav{
     height: 60px;
 }
-#header{
-    margin: 23px 0 39px;
-}
 #content{
     margin-bottom: 300px;
 }
@@ -221,7 +218,7 @@ h1 img{
   height: 50px;
 }
 
-.content {
+#headerimg {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -237,7 +234,7 @@ h1 img{
   border-radius: 100px;
 }
 
-.content h2 {
+#headerimg h2 {
   color: white;
   font-weight: 700;
 }
