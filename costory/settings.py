@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os, json
+import os, json, string, random
 from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -27,7 +27,11 @@ def get_secret(setting, secrets=secrets):
     except KeyError:
         error_msg = "Set the {} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
-SECRET_KEY = get_secret("SECRET_KEY")
+
+# Get ascii Characters numbers and punctuation (minus quote characters as they could terminate string).
+chars = ''.join([string.ascii_letters, string.digits, string.punctuation]).replace('\'', '').replace('"', '').replace('\\', '')
+
+SECRET_KEY = ''.join([random.SystemRandom().choice(chars) for i in range(50)])
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
