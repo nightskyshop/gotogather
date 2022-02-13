@@ -207,6 +207,7 @@ h1 img{
 
 .classtitle {
   color: rgb(255, 255, 255);
+  margin-top: 100px;
 }
 
 .hide {
@@ -226,7 +227,7 @@ h1 img{
   align-items: center;
   max-width: 1000px;
   width: 100%;
-  height: 555px;
+  height: 556px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top;
